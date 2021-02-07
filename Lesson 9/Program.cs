@@ -58,7 +58,34 @@ namespace Lesson_9
                 }
                 return NewV;    
             }
+            public static T[] Slice<T>(ref T[] V,int x)//with Begin
+            {
+                T[] NewV = default;
+                if (V.Length != 0)
+                {
+                    NewV = new T[V.Length - x];
+                    for (int i =x; i <V.Length; i ++ )
+                        NewV[i - x] = V[i];
+                }
+                else
+                    Console.WriteLine("Array is empty");
 
+                return NewV;
+            }
+            public static T[] Slice<T>(ref T[] V,int x, int y)// with begin and end;
+            {
+                T[] NewV = default;
+                if (V.Length != 0)
+                {
+                    NewV = new T[y-x];
+                    for (int i = x; i < y; i++)
+                        NewV[i - x] = V[i];
+                }
+                else
+                    Console.WriteLine("Array is empty");
+
+                return NewV;
+            }
 
     }
     class Program
@@ -70,11 +97,12 @@ namespace Lesson_9
             for (int i = 0; i < V1.Length; i++)
                 Console.Write(V1[i] + " ");
             Console.WriteLine();
-            Console.WriteLine(ArrayHelper.Pop(ref V1));
+            //Console.WriteLine(ArrayHelper.Slice(ref V1,1,3));
             Console.WriteLine();
-            Console.WriteLine("Our New Array ");
-            for (int i = 0; i < V1.Length; i++)
-                Console.Write(V1[i] + " ");
+            string[] V2 = ArrayHelper.Slice(ref V1, 1, 3);
+            Console.Write("Our NewV Array contains:  ");
+            for (int i = 0; i < V2.Length; i++)
+                Console.Write(V2[i] + " ");
         }
     }
 }
